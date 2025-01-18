@@ -1,9 +1,18 @@
-import React from 'react'
-
+import React from "react";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import UserCard from "./UserCard";
+import EditProfile from "./EditProfile";
 const Profile = () => {
-  return (
-    <div>Profile</div>
-  )
-}
+    const user = useSelector((store) => store.user);
 
-export default Profile
+    return (
+        user && (
+            <>
+                <EditProfile user={user} />
+            </>
+        )
+    );
+};
+
+export default Profile;
