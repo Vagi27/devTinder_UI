@@ -5,6 +5,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 import { removeUser } from "../utils/userSlice";
 import axios from "axios";
+
+import { removeFeed } from "../utils/feedSlice";
+import { removeConnections } from "../utils/connectionSlice";
+import { removeAllRequest } from "../utils/requestSlice";
 const Navbar = () => {
     const user = useSelector((store) => store.user);
     const dispatch = useDispatch();
@@ -13,6 +17,9 @@ const Navbar = () => {
         try {
             await axios.get(BASE_URL + "/logout", { withCredentials: true });
             dispatch(removeUser());
+            dispatch(removeFeed());
+            dispatch(removeAllRequest());
+            dispatch(removeConnections());
             navigate("/login");
         } catch (error) {
             console.log("error: " + error.message);
@@ -50,10 +57,10 @@ const Navbar = () => {
                                 </Link>
                             </li>
                             <li>
-                                <Link>Connections</Link>
+                                <Link to="/connections">Connections</Link>
                             </li>
                             <li>
-                                <Link>Requests</Link>
+                                <Link to="/requests">Requests</Link>
                             </li>
                             <li>
                                 <a onClick={handleLogout}>Logout</a>
