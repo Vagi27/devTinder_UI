@@ -34,11 +34,15 @@ const Body = () => {
     };
 
     return (
-        <>
-            <Navbar />
-            <Outlet />
-            <Footer />
-        </>
+        <div className="flex flex-col min-h-screen">
+            <div className="flex-grow">
+                <Navbar />
+                <Outlet />
+            </div>
+            <div className="">
+                <Footer />
+            </div>
+        </div>
     );
 };
 
